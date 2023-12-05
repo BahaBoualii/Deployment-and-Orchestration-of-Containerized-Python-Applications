@@ -1,0 +1,19 @@
+- hosts: nodes
+  become: yes
+  tasks:
+  - name: ensure docker is already installed
+    apt:
+      name: docker.io
+      state: latest
+      update_cache: yes
+
+  - name: ensure docker-compose is already installed
+    apt:
+      name: docker-compose
+      state: latest
+      update_cache: yes
+
+  - name: add user to docker group
+    user:
+      name: vagrant
+      group: docker
